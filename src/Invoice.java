@@ -15,9 +15,16 @@ public class Invoice {
 		double[] inputs = new double[100];
 		int i = 0;
 		double sum = 0;
+		double tax = -1;
 		
-		System.out.println("Enter tax %: ");
-		double tax = in.nextDouble();
+		while(tax==-1){
+			try{
+				tax = getTax();
+			}catch(Exception e){
+				System.out.println("Error, enter valid double");
+			}
+		}
+		
 		
 		while(1==1){
 			System.out.println("Enter Item Price: ");
@@ -35,5 +42,11 @@ public class Invoice {
 		System.out.println("Subtotal: " + nf.format(sum));
 		System.out.println("Tax: " + nf.format(taxTotal));
 		System.out.println("Grand Total: " + nf.format(sum+taxTotal));
+	}
+	
+	public static double getTax() throws Exception{
+		System.out.println("Enter tax rate: ");
+		Scanner in = new Scanner(System.in);
+		return in.nextDouble();
 	}
 }
